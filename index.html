@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>生成加载图片的代码</title>
+    <meta name="keywords" content="生成加载图片的代码" />
+    <meta name="description" content="生成加载图片的代码" />
+    <style>
+    	body{
+    		overflow: auto;
+    	}
+        .uploadImgs{
+        	width: 700px;
+        	height: 70px;
+        	margin: 50px auto 20px;
+        	border: 2px dashed #333;
+        	text-align: center;
+        	line-height: 70px;
+        	font-size: 18px;
+        	font-weight: bold;
+        }
+        .uploadImgs span{
+        	margin-right: 20px;
+        }
+        #resultBox{
+        	width: 640px;
+        	height: 500px;
+        	margin: 0 auto;
+        	border: 1px solid #333;
+        	padding: 30px;
+        	overflow: auto;
+        }
+    </style>
+</head>
+
+<body>
+	<div class="uploadImgs">
+		<span>请选择您的文件夹</span>
+		<input type="file" id="fileselect" multiple="multiple" webkitdirectory>
+	</div>
+	<div id="resultBox"></div>
+
+	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+	<script>
+		$("#fileselect").on("change",getFiles)
+		var resultStr = "";
+
+		//获取文件
+		function getFiles(e){
+			var files = e.target.files;
+
+			for (var i = 0; i < files.length; i++) {
+				dealEachImg(files[i]);
+			};
+			$("#resultBox").html(resultStr);
+		}//end func
+
+		//处理单个图片文件
+		function dealEachImg(file){
+			if(file.type == "image/jpeg" || file.type == "image/png"){
+				resultStr += "loader.addImage('"+file.webkitRelativePath+"');<br>"
+			}
+		}//end func
+	</script>
+</body>
+</html>
