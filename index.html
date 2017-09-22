@@ -41,10 +41,8 @@
 	</div>
 	<div id="resultBox"></div>
 
-	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-
 	<script>
-		$("#fileselect").on("change",getFiles)
+		document.getElementById("fileselect").addEventListener("change",getFiles);
 		var resultStr = "";
 
 		//获取文件
@@ -54,7 +52,7 @@
 			for (var i = 0; i < files.length; i++) {
 				dealEachImg(files[i]);
 			};
-			$("#resultBox").html(resultStr);
+			document.getElementById("resultBox").innerHTML = resultStr;
 		}//end func
 
 		//处理单个图片文件
